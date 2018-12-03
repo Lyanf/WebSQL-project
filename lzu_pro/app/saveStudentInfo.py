@@ -3,6 +3,7 @@ import django
 django.setup()
 import requests
 from bs4 import BeautifulSoup
+from bs4.element import Tag
 from app.models import Student, Teacher, Lesson, LessonComment
 from app.getjess import getJess
 import execjs
@@ -52,6 +53,10 @@ def savelesson(studentId, uid, year, term):
     temp = lessonHTML.text
     bs = BeautifulSoup(temp)
     temp = bs.find(name='table', class_='infolist_tab')
+    try:
+        assert isinstance(temp,Tag)
+    except:
+        return
     temp2 = temp.find_all(name='tr', class_='infolist_common')
     allresult = temp2
     out = {}

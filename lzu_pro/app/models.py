@@ -10,8 +10,8 @@ class Student(models.Model):
     # studentPSW = models.CharField("密码",max_length=20,blank=True)
 
 class LessonComment(models.Model):
-    studentObj=models.ForeignKey(Student)
-    lessonObj=models.ForeignKey("Lesson")
+    studentObj=models.ForeignKey(Student,on_delete=models.CASCADE)
+    lessonObj=models.ForeignKey("Lesson",on_delete=models.CASCADE)
     lessonLabelObj = models.ManyToManyField("LessonLabel")
     semester=models.BooleanField("本学期课程",default=False)
     commented=models.BooleanField("是否已经评价",default=False)
